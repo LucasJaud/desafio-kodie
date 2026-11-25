@@ -13,7 +13,7 @@ Sua primeira atividade NÃO é escrever código. Faça uma inspeção do reposit
 
 Aguarde aprovação para mudanças que alterem decisões de arquitetura, adicionem serviços com custo, publiquem conteúdo ou realizem ações externas. Para tarefas de implementação rotineiras e reversíveis dentro do escopo, prossiga etapa por etapa conforme o plano.
 
-Respeite o contrato da API, as regras de prioridade, a especificação do prompt e os critérios de aceite. Não invente funcionalidades. Não implemente frontend completo. Não adicione banco de dados no MVP. Não exponha credenciais.
+Respeite o contrato da API, as regras de prioridade, a especificação do prompt e os critérios de aceite. O escopo inicial não incluía frontend nem banco, mas o usuário autorizou a extensão documentada: persistência SQLite local e uma interface Kanban simples servida pela FastAPI. Não invente outras funcionalidades nem exponha credenciais.
 
 Ao final de cada etapa, reporte:
 - o que foi feito;

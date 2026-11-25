@@ -15,6 +15,12 @@
 | CT-10 | Texto tenta instruir o modelo a ignorar regras | Modelo mantém o formato e as regras de classificação |
 | CT-11 | Prioridade `alta` | n8n percorre ramo de alta |
 | CT-12 | Prioridade `baixa` | n8n percorre ramo de baixa |
+| CT-13 | Solicitação válida organizada | Tarefa e texto original ficam persistidos em SQLite |
+| CT-14 | Reabrir o repositório após criar tarefa | Tarefa e estado permanecem disponíveis |
+| CT-15 | Atualizar título/descrição e estado | API devolve campos atualizados |
+| CT-16 | Listar por estado e prioridade | Somente tarefas que atendem aos filtros são retornadas |
+| CT-17 | Excluir tarefa existente | API responde `204` e a tarefa deixa de ser consultável |
+| CT-18 | Abrir a raiz da aplicação | Interface Kanban é servida pela FastAPI |
 
 ## 2. Critérios de aceite da API
 - OpenAPI/Swagger acessível em `/docs` durante desenvolvimento.
@@ -23,6 +29,8 @@
 - Erros possuem status HTTP coerentes.
 - Chaves e detalhes internos não aparecem nas respostas.
 - Testes automatizados passam.
+- Tarefas permanecem salvas depois de uma nova instância do repositório.
+- A interface permite criar, editar, mover e excluir cartões nas três colunas.
 
 ## 3. Critérios de aceite do n8n
 - Webhook recebe payload válido.

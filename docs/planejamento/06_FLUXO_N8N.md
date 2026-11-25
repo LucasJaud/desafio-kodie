@@ -6,10 +6,10 @@ Demonstrar que o n8n recebe uma solicitação, integra-se à API FastAPI e organ
 ## 2. Fluxo proposto
 1. **Webhook** — recebe `request_text` por POST.
 2. **IF / validação básica** — verifica se o campo existe e não está vazio.
-3. **HTTP Request** — chama `POST /api/v1/tasks/organize` da API.
+3. **HTTP Request** — chama `POST /api/v1/tasks/organize` da API, que classifica e persiste a solicitação.
 4. **Switch** — avalia `priority`.
 5. **Ramos de saída** — um ramo para `critica`, `alta`, `media` e `baixa`.
-6. **Respond to Webhook** — devolve ao solicitante o resultado organizado, incluindo prioridade e próximo passo.
+6. **Respond to Webhook** — devolve ao solicitante o resultado organizado, incluindo identificador, estado, prioridade e próximo passo.
 7. **Tratamento de erro** — configurar comportamento para falha na chamada HTTP ou entrada inválida.
 
 O desenho exato pode variar conforme a versão do n8n. O agente deve conferir os nodes e opções disponíveis na instalação utilizada.
@@ -38,6 +38,10 @@ O Switch deve comparar o campo `priority` com os valores previstos:
 - `baixa`
 
 Cada ramo deve produzir uma saída identificável. No MVP, pode ser uma resposta estruturada ou registro de execução demonstrativo; não é necessário conectar a serviços externos reais.
+
+O fluxo n8n não substitui o quadro Kanban: ambos chamam a mesma API e consultam
+o registro persistido. A resposta acrescida de `id`, `status`, `request_text`,
+`created_at` e `updated_at` deve preservar a ramificação existente por `priority`.
 
 ## 6. Evidências obrigatórias
 Capturar:

@@ -70,6 +70,14 @@ Somente após as etapas anteriores:
 - Revalidar o fluxo usando nomes de serviço na rede Docker.
 **Saída:** execução reproduzível em containers.
 
+## Etapa 8 — Extensão autorizada: persistência e Kanban
+- Persistir texto original, campos estruturados, estado e datas em SQLite.
+- Estender a API com listagem, consulta, atualização e exclusão de tarefas.
+- Servir uma interface Kanban pela FastAPI, com criação, edição, movimentação e exclusão.
+- Isolar o banco de testes em arquivos temporários e validar persistência entre instâncias.
+- Configurar armazenamento durável no Compose e atualizar o contrato e o README.
+**Saída:** mensagens organizadas ficam disponíveis no quadro após reinicializações.
+
 ## Política de avanço
 Ao concluir cada etapa, apresentar:
 - resumo do que foi implementado;

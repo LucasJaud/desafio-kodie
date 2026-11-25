@@ -4,6 +4,18 @@
 ```text
 task-organizer/
 ├── app/
+│   ├── api/
+│   ├── core/
+│   ├── schemas/
+│   ├── services/
+│   │   ├── ai_service.py
+│   │   ├── task_classifier.py
+│   │   └── task_repository.py
+│   ├── static/
+│   │   ├── index.html
+│   │   ├── styles.css
+│   │   └── app.js
+│   └── main.py
 ├── tests/
 ├── n8n/
 │   └── workflow.json
@@ -62,5 +74,6 @@ Não incluir tokens, chaves, e-mails reais ou dados pessoais.
 - JSON exportado do n8n.
 - `.env.example`.
 - Dockerfile e Compose, se o diferencial opcional for implementado.
+- Banco SQLite persistido no volume `task_data` no Docker Compose; não versionar o arquivo local.
 
 O desafio pede o link do repositório GitHub como forma de entrega. A publicação deve ser feita pelo responsável pelo projeto.

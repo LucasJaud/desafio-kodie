@@ -37,12 +37,13 @@ A IA sugere a classificação; a automação aplica regras fixas e controladas.
 - Disponibilizar endpoint para o n8n.
 - Criar fluxo no n8n que chama a API e trata sucesso/erro.
 - Demonstrar uma ação de organização, como separar tarefas por prioridade e encaminhar para destinos simulados (por exemplo, saídas/ramificações distintas no fluxo).
+- Persistir mensagens e tarefas estruturadas localmente, com estado de andamento.
+- Disponibilizar interface Kanban para consultar, editar, mover e excluir tarefas.
 - Documentar e testar.
 
 ## 6. Fora do escopo
-- Aplicativo web completo ou aplicativo móvel.
+- Aplicativo móvel ou sistema web multiusuário.
 - Gestão de usuários, login e permissões.
-- Banco de dados persistente obrigatório.
 - Integração real com Jira, Trello, Slack, e-mail ou outros serviços externos no MVP.
 - Planejamento automático de calendário ou atribuição definitiva de responsáveis.
 - Execução automática de ações técnicas descritas na solicitação.
@@ -57,3 +58,8 @@ Beneficiário: pessoa ou equipe que recebe a tarefa já organizada.
 - Prioridade explicável, com justificativa.
 - Automação previsível e segura.
 - Nenhuma ação externa real sem configuração e autorização explícitas.
+
+## 9. Extensão aprovada
+Após a definição inicial do desafio, o usuário autorizou persistência em SQLite
+e uma interface Kanban simples. A extensão mantém os itens fora de escopo
+acima: não inclui autenticação, multiusuário nem integrações externas reais.

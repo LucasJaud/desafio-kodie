@@ -1,0 +1,48 @@
+services:
+  api:
+    build: .
+    container_name: task-organizer-api
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: ${APP_NAME:-task-organizer}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      TASK_REQUEST_MAX_LENGTH: ${TASK_REQUEST_MAX_LENGTH:-4000}
+      DATABASE_PATH: /data/tasks.db
+      AI_PROVIDER: ${AI_PROVIDER:-google}
+      AI_BASE_URL: ${AI_BASE_URL:-https://generativelanguage.googleapis.com/v1beta/openai/}
+      AI_MODEL: ${AI_MODEL:-gemini-3.5-flash}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_TIMEOUT_SECONDS: ${AI_TIMEOUT_SECONDS:-90}
+      AI_MAX_TOKENS: ${AI_MAX_TOKENS:-2048}
+      AI_TEMPERATURE: ${AI_TEMPERATURE:-0.0}
+      AI_JSON_MODE: ${AI_JSON_MODE:-false}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - task_data:/data
+    restart: unless-stopped
+    init: true
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:2.49.6
+    container_name: task-organizer-n8n
+    ports:
+      - "5678:5678"
+    environment:
+      GENERIC_TIMEZONE: ${GENERIC_TIMEZONE:-America/Sao_Paulo}
+      TZ: ${TZ:-America/Sao_Paulo}
+      N8N_SECURE_COOKIE: "false"
+      N8N_BLOCK_ENV_ACCESS_IN_NODE: "false"
+      API_BASE_URL: ${API_BASE_URL:-http://api:8000}
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    init: true
+
+volumes:
+  n8n_data:
+  task_data:

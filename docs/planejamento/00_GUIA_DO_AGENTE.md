@@ -22,8 +22,8 @@ O agente deve trabalhar de forma incremental, preservar decisões documentadas e
 - Siga os documentos. Se encontrar conflito ou lacuna que afete arquitetura, segurança ou contrato, registre a dúvida e proponha a menor decisão coerente; não invente requisitos silenciosamente.
 - Implemente uma etapa por vez. Ao terminar cada etapa, execute os testes aplicáveis e informe arquivos alterados, comandos executados e resultados.
 - Não avance com testes falhando sem explicar a causa e registrar o bloqueio.
-- Não implemente frontend completo: o desafio não exige interface visual.
-- Não adicione banco de dados, autenticação, filas ou serviços externos sem necessidade demonstrada.
+- O escopo original não exigia frontend nem banco de dados. Uma extensão autorizada pelo usuário acrescenta persistência SQLite local e uma interface Kanban simples servida pela FastAPI; preserve essa decisão.
+- Não adicione autenticação, filas ou serviços externos sem necessidade e autorização explícitas.
 - Não coloque chaves, tokens, senhas ou dados pessoais nos arquivos versionados, logs, testes ou documentação.
 - Use variáveis de ambiente. Mantenha `.env.example` apenas com nomes e valores fictícios/seguros.
 - Valide todos os dados recebidos da IA como entrada não confiável. Não execute comandos ou ações arbitrárias sugeridas pelo modelo.

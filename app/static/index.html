@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>Task Organizer | Quadro</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Task Organizer, início">
+          <span class="brand-mark" aria-hidden="true">T</span>
+          <span>Task <strong>Organizer</strong></span>
+        </a>
+        <span class="storage-indicator"><span></span> Salvamento local ativo</span>
+      </header>
+
+      <main>
+        <section class="intro">
+          <div>
+            <p class="eyebrow">SEU ESPAÇO DE TRABALHO</p>
+            <h1>Organize suas tarefas</h1>
+            <p class="intro-copy">Transforme mensagens em um fluxo claro de trabalho.</p>
+          </div>
+          <div class="task-total" aria-live="polite">
+            <strong id="task-total">0</strong>
+            <span>tarefas no quadro</span>
+          </div>
+        </section>
+
+        <section class="composer panel" aria-labelledby="composer-title">
+          <div class="composer-heading">
+            <div class="composer-icon" aria-hidden="true">+</div>
+            <div>
+              <h2 id="composer-title">Nova tarefa</h2>
+              <p>Escreva uma mensagem. A IA organiza e salva para você.</p>
+            </div>
+          </div>
+          <form id="task-form">
+            <label class="sr-only" for="request-text">Descreva sua tarefa</label>
+            <textarea
+              id="request-text"
+              name="request_text"
+              maxlength="4000"
+              placeholder="Ex.: Preparar a apresentação do projeto para sexta-feira..."
+              required
+            ></textarea>
+            <div class="composer-footer">
+              <span id="char-count">0 / 4000</span>
+              <button class="button button-primary" type="submit">
+                <span>Organizar tarefa</span>
+                <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+        <section class="board-section" aria-labelledby="board-title">
+          <div class="board-heading">
+            <div>
+              <p class="eyebrow">VISÃO GERAL</p>
+              <h2 id="board-title">Quadro de tarefas</h2>
+            </div>
+            <button id="refresh-button" class="button button-quiet" type="button">
+              <span aria-hidden="true">↻</span> Atualizar
+            </button>
+          </div>
+
+          <div id="board" class="board" aria-label="Tarefas agrupadas por andamento">
+            <section class="lane" data-status="todo" aria-labelledby="todo-heading">
+              <header class="lane-header">
+                <div class="lane-label"><span class="lane-dot todo-dot"></span><h3 id="todo-heading">A fazer</h3></div>
+                <span class="lane-count" data-count="todo">0</span>
+              </header>
+              <div class="lane-cards" data-cards="todo"></div>
+              <p class="lane-empty" data-empty="todo">Nenhuma tarefa por aqui.</p>
+            </section>
+            <section class="lane" data-status="in_progress" aria-labelledby="progress-heading">
+              <header class="lane-header">
+                <div class="lane-label"><span class="lane-dot progress-dot"></span><h3 id="progress-heading">Em andamento</h3></div>
+                <span class="lane-count" data-count="in_progress">0</span>
+              </header>
+              <div class="lane-cards" data-cards="in_progress"></div>
+              <p class="lane-empty" data-empty="in_progress">Nenhuma tarefa por aqui.</p>
+            </section>
+            <section class="lane" data-status="done" aria-labelledby="done-heading">
+              <header class="lane-header">
+                <div class="lane-label"><span class="lane-dot done-dot"></span><h3 id="done-heading">Concluída</h3></div>
+                <span class="lane-count" data-count="done">0</span>
+              </header>
+              <div class="lane-cards" data-cards="done"></div>
+              <p class="lane-empty" data-empty="done">Nenhuma tarefa por aqui.</p>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">As tarefas são armazenadas localmente neste servidor.</footer>
+    </div>
+
+    <dialog id="task-dialog" class="task-dialog">
+      <form id="edit-form">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">DETALHES DA TAREFA</p>
+            <h2>Editar tarefa</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog aria-label="Fechar">×</button>
+        </div>
+        <label for="edit-title">Título</label>
+        <input id="edit-title" name="title" maxlength="200" required>
+        <label for="edit-description">Descrição</label>
+        <textarea id="edit-description" name="description" maxlength="4000"></textarea>
+        <label for="edit-status">Andamento</label>
+        <select id="edit-status" name="status">
+          <option value="todo">A fazer</option>
+          <option value="in_progress">Em andamento</option>
+          <option value="done">Concluída</option>
+        </select>
+        <details class="task-context">
+          <summary>Mensagem original e sugestão da IA</summary>
+          <div class="context-content">
+            <h3>Mensagem original</h3>
+            <p id="original-request"></p>
+            <h3>Próximo passo sugerido</h3>
+            <p id="suggested-step"></p>
+            <h3>Motivo da prioridade</h3>
+            <p id="priority-reason"></p>
+          </div>
+        </details>
+        <div class="dialog-actions">
+          <button class="button button-quiet" type="button" data-close-dialog>Cancelar</button>
+          <button class="button button-primary" type="submit">Salvar alterações</button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>

@@ -14,6 +14,10 @@
 | RF-08 | O fluxo deve ramificar ou organizar o resultado conforme prioridade. |
 | RF-09 | O fluxo deve tratar falhas HTTP ou respostas inválidas sem interromper silenciosamente. |
 | RF-10 | O projeto deve documentar instalação, configuração, execução e fluxo. |
+| RF-11 | A API deve persistir texto original, tarefa estruturada, estado e datas em SQLite local. |
+| RF-12 | A API deve listar, consultar, editar, mover e excluir tarefas persistidas. |
+| RF-13 | A interface web deve exibir tarefas em colunas A fazer, Em andamento e Concluída. |
+| RF-14 | A interface deve permitir criar tarefas a partir de mensagens, editar campos, mover e excluir cartões. |
 
 ## 2. Requisitos não funcionais
 - RNF-01: segredos somente em variáveis de ambiente.
@@ -23,6 +27,8 @@
 - RNF-05: configuração local reproduzível.
 - RNF-06: logs sem credenciais; evitar registrar o texto integral das solicitações por padrão.
 - RNF-07: timeout configurado para chamadas ao provedor de IA.
+- RNF-08: persistência local em SQLite, sem dependência de serviço de banco externo.
+- RNF-09: texto original do usuário deve ser renderizado como texto, sem interpretação como HTML.
 
 ## 3. Modelo de prioridade
 Valores permitidos:
